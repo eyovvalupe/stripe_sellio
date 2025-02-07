@@ -58,10 +58,10 @@ app.use(error);
 // });
 
 // starting our server
-// const server = app.listen(process.env.PORT, () => {
-//   console.log(`Server running on: http://localhost:${process.env.PORT}`);
-//   console.log(`API Docs: http://localhost:${process.env.PORT}/api/v1/docs`);
-// });
+const server = app.listen(process.env.PORT, () => {
+  console.log(`Server running on: http://localhost:${process.env.PORT}`);
+  console.log(`API Docs: http://localhost:${process.env.PORT}/api/v1/docs`);
+});
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
