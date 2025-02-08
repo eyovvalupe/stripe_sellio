@@ -21,8 +21,8 @@ fs.access(uploadDir, fs.constants.F_OK, (err) => {
   }
 });
 const options = {
-  key: fs.readFileSync("./privkey.pem"),
-  cert: fs.readFileSync("./fullchain.pem"),
+  key: fs.readFileSync('/opt/ssl_certs/privkey.pem'),
+  cert: fs.readFileSync('/opt/ssl_certs/fullchain.pem'),
 };
 const app = express();
 
@@ -36,6 +36,7 @@ const app = express();
   })
 ); */
 app.use(cors());
+app.use(express.static("dist"));
 app.use("/", express.static(uploadDir));
 app.use(express.json());
 app.use(cookieParser());
