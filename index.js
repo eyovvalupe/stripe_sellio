@@ -20,10 +20,10 @@ fs.access(uploadDir, fs.constants.F_OK, (err) => {
     fs.mkdir(uploadDir, { recursive: true }, (err) => {});
   }
 });
-const options = {
-  key: fs.readFileSync('/opt/ssl_certs/privkey.pem'),
-  cert: fs.readFileSync('/opt/ssl_certs/fullchain.pem'),
-};
+// const options = {
+//   key: fs.readFileSync('/opt/ssl_certs/privkey.pem'),
+//   cert: fs.readFileSync('/opt/ssl_certs/fullchain.pem'),
+// };
 const app = express();
 
 // middlewares
@@ -53,16 +53,16 @@ app.use("/api/v1/", routes);
 app.use(error);
 
 //  // starting our server
-const server = https.createServer(options, app).listen(process.env.PORT, () => {
-  console.log(`Server running on: http://localhost:${process.env.PORT}`);
-  console.log(`API Docs: http://localhost:${process.env.PORT}/api/v1/docs`);
-});
-
-// starting our server
-// const server = app.listen(process.env.PORT, () => {
+// const server = https.createServer(options, app).listen(process.env.PORT, () => {
 //   console.log(`Server running on: http://localhost:${process.env.PORT}`);
 //   console.log(`API Docs: http://localhost:${process.env.PORT}/api/v1/docs`);
 // });
+
+// starting our server
+const server = app.listen(process.env.PORT, () => {
+  console.log(`Server running on: http://localhost:${process.env.PORT}`);
+  console.log(`API Docs: http://localhost:${process.env.PORT}/api/v1/docs`);
+});
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
